@@ -30,3 +30,4 @@ SELECT name, AVG(escape_attempts) avg_escape_attempts FROM animals WHERE date_of
 SELECT COUNT(*) non_escape_animals FROM animals WHERE escape_attempts = 0;
 SELECT AVG(weight_kg) average_weight FROM animals;
 SELECT neutered, COUNT(*) escape_count FROM animals WHERE escape_attempts > 0 GROUP BY neutered ORDER BY escape_count DESC LIMIT 1;
+SELECT COUNT(*) AS total_animals FROM animals;
