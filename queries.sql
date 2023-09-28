@@ -25,3 +25,8 @@ UPDATE animals SET weight_kg = weight_kg * -1;
 ROLLBACK TO SAVEPOINT delete_date;
 UPDATE animals SET weight_kg =weight_kg * -1 WHERE weight_kg < 0;
 COMMIT;
+SELECT name, MIN(weight_kg) min_weight, MAX(weight_kg) max_weight FROM animals GROUP BY name;
+SELECT name, AVG(escape_attempts) avg_escape_attempts FROM animals WHERE date_of_birth BETWEEN '01-01-1990' AND '12-31-2000' GROUP BY name;
+SELECT COUNT(*) non_escape_animals FROM animals WHERE escape_attempts = 0;
+SELECT AVG(weight_kg) average_weight FROM animals;
+SELECT neutered, COUNT(*) escape_count FROM animals WHERE escape_attempts > 0 GROUP BY neutered ORDER BY escape_count DESC LIMIT 1;
