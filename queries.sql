@@ -37,3 +37,19 @@ SELECT COUNT(*) non_escape_animals FROM animals WHERE escape_attempts = 0;
 SELECT AVG(weight_kg) average_weight FROM animals;
 SELECT neutered, COUNT(*) escape_count FROM animals WHERE escape_attempts > 0 GROUP BY neutered ORDER BY escape_count DESC LIMIT 1;
 SELECT COUNT(*) AS total_animals FROM animals;
+
+SELECT a.animal_name FROM animals animal INNER JOIN owners owner ON animal.owner_id = owner.owner_id WHERE owner.full_name = 'Melody Pond';
+SELECT animal.animal_name FROM  animals animal INNER JOIN species specie ON animal.species_id = specie.species_id WHERE specie.species_name = 'Pokemon';
+
+SELECT owner.full_name, coalesce(array_agg(animal.animal_name ORDER BY animal.animal_name), '{}'::text[]) AS owned_animals FROM owners owner
+LEFT JOIN animals animal ON owner.owner_id = animal.owner_id GROUP BY owner.full_name;
+
+SELECT specie.species_name AS species_name, COUNT(*) AS animal_total FROM animals animal INNER JOIN species specie ON animal.species_id = specie.species_id
+GROUP BY specie.species_name;
+SELECT animal.animal_name FROM animals animal INNER JOIN species specie ON animal.species_id = specie.species_id INNER JOIN owners owner ON animal.owner_id = owner.owner_id WHERE specie.species_name = 'Digimon' AND owner.full_name = 'Jennifer Orwell';
+
+SELECT animal.animal_name FROM animals animal INNER JOIN owners owner ON animal.owner_id = owner.owner_id WHERE owner.full_name = 'Dean Winchester' AND animal.escape_attempts = 0;
+
+SELECT owner.full_name FROM owners owner LEFT JOIN animals animals ON owner.owner_id = animal.owner_id GROUP BY owner.full_name
+ORDER BY COUNT(animal.owner_id) DESC
+LIMIT 1;
