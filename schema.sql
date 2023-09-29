@@ -18,5 +18,11 @@ CREATE TABLE species (
     name VARCHAR(255)
 );
 ALTER TABLE animals
+DROP COLUMN IF EXISTS species;
+ALTER TABLE animals DROP CONSTRAINT IF EXISTS animals_pkey;
+ALTER TABLE animals
+ALTER COLUMN id SET DATA TYPE SERIAL,
+ADD PRIMARY KEY (id);
+ALTER TABLE animals
     ADD COLUMN species_id INTEGER REFERENCES species(id),
     ADD COLUMN owner_id INTEGER REFERENCES owners(id);
