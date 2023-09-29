@@ -26,3 +26,6 @@ ADD PRIMARY KEY (id);
 ALTER TABLE animals
     ADD COLUMN species_id INTEGER REFERENCES species(id),
     ADD COLUMN owner_id INTEGER REFERENCES owners(id);
+
+ALTER TABLE animals ADD COLUMN species VARCHAR(255);
+
