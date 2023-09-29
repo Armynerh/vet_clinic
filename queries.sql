@@ -82,9 +82,10 @@ WHERE v.name = 'William Tatcher'
 ORDER BY vi.visit_date DESC
 LIMIT 1;
 
-SELECT COUNT(DISTINCT animal_name) AS num_animals_seen
-FROM visits
-WHERE vet_id = (SELECT id FROM vets WHERE name = 'Stephanie Mendez');
+SELECT COUNT(DISTINCT v.animal_name) AS num_animals_seen
+FROM visits v
+JOIN vets vet ON v.vet_id = vet.id
+WHERE vet.name = 'Stephanie Mendez';
 
 SELECT v.name AS vet_name, s.species AS specialty
 FROM vets v
@@ -92,7 +93,7 @@ LEFT JOIN specializations s ON v.id = s.vet_id;
 
 SELECT DISTINCT animal_name
 FROM visits
-WHERE vet_id = (SELECT id FROM vets WHERE name = 'Stephanie Mendez')
+WHERE vet_id IN (SELECT id FROM vets WHERE name = 'Stephanie Mendez')
   AND visit_date BETWEEN '04-01-2020' AND '08-30-2020';
 
 SELECT animal_name, COUNT(*) AS num_visits
