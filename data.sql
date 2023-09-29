@@ -9,3 +9,7 @@ UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Jennifer
 UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Bob') WHERE name IN ('Devimon', 'Plantmon');
 UPDATE animalsSET owner_id = (SELECT id FROM owners WHERE full_name = 'Melody Pond') WHERE name IN ('Charmander', 'Squirtle', 'Blossom');
 UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Dean Winchester') WHERE name IN ('Angemon', 'Boarmon');
+INSERT INTO visits (animal_name, vet_id, visit_date) VALUES('Agumon', 1, '2020-05-24'), ('Agumon', 3, '2020-07-22'), ('Gabumon', 4, '2021-02-02'), ('Pikachu', 2, '2020-01-05'), ('Pikachu', 2, '2020-03-08'), ('Pikachu', 2, '2020-05-14'), ('Devimon', 3, '2021-05-04'), ('Charmander', 4, '2021-02-24'), ('Plantmon', 2, '2019-12-21'), ('Plantmon', 1, '2020-08-10'), ('Plantmon', 2, '2021-04-07'), ('Squirtle', 3, '2019-09-29'),
+('Angemon', 4, '2020-10-03'), ('Angemon', 4, '2020-11-04'), ('Boarmon', 2, '2019-01-24'), ('Boarmon', 2, '2019-05-15'), ('Boarmon', 2, '2020-02-27'), ('Boarmon', 2, '2020-08-03'), ('Blossom', 3, '2020-05-24'), ('Blossom', 1, '2021-01-11');
+INSERT INTO specializations (vet_id, species) VALUES (1, 'Pokemon'), (3, 'Digimon'), (3, 'Pokemon'), (4, 'Digimon');
+INSERT INTO vets (name, age, date_of_graduation) VALUES ('William Tatcher', 45, '2000-04-23'), ('Maisy Smith', 26, '2019-01-17'), ('Stephanie Mendez', 64, '1981-05-04'), ('Jack Harkness', 38, '2008-06-08');
