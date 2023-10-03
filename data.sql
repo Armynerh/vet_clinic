@@ -13,3 +13,9 @@ INSERT INTO visits (animal_name, vet_id, visit_date) VALUES('Agumon', 1, '2020-0
 ('Angemon', 4, '2020-10-03'), ('Angemon', 4, '2020-11-04'), ('Boarmon', 2, '2019-01-24'), ('Boarmon', 2, '2019-05-15'), ('Boarmon', 2, '2020-02-27'), ('Boarmon', 2, '2020-08-03'), ('Blossom', 3, '2020-05-24'), ('Blossom', 1, '2021-01-11');
 INSERT INTO specializations (vet_id, species) VALUES (1, 'Pokemon'), (3, 'Digimon'), (3, 'Pokemon'), (4, 'Digimon');
 INSERT INTO vets (name, age, date_of_graduation) VALUES ('William Tatcher', 45, '2000-04-23'), ('Maisy Smith', 26, '2019-01-17'), ('Stephanie Mendez', 64, '1981-05-04'), ('Jack Harkness', 38, '2008-06-08');
+
+-- This will add 3.594.280 visits considering you have 10 animals, 4 vets, and it will use around ~87.000 timestamps (~4min approx.)
+INSERT INTO visits (animal_id, vet_id, date_of_visit) SELECT * FROM (SELECT id FROM animals) animal_ids, (SELECT id FROM vets) vets_ids, generate_series('1980-01-01'::timestamp, '2021-01-01', '4 hours') visit_timestamp;
+
+-- This will add 2.500.000 owners with full_name = 'Owner <X>' and email = 'owner_<X>@email.com' (~2min approx.)
+insert into owners (full_name, email) select 'Owner ' || generate_series(1,2500000), 'owner_' || generate_series(1,2500000) || '@mail.com';
